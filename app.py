@@ -21,12 +21,12 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 # ─────────────────────────────────────────────
 def get_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Root",
-        database="fire"
+        host=os.environ.get('MYSQLHOST', 'localhost'),
+        user=os.environ.get('MYSQLUSER', 'root'),
+        password=os.environ.get('MYSQLPASSWORD', 'Root'),
+        database=os.environ.get('MYSQLDATABASE', 'fire'),
+        port=int(os.environ.get('MYSQLPORT', 3306))
     )
-
 
 get_db_connection = get_db
 
